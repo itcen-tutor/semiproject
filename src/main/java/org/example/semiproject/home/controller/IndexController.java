@@ -1,4 +1,4 @@
-package org.example.semiproject.controller;
+package org.example.semiproject.home.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
