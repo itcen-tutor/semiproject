@@ -94,6 +94,9 @@ const submitJoinfrm = async (frm) => {
     // 폼에 입력된 데이터를 formData 객체로 초기화
     const formData = new FormData(frm);
 
+    // 폼 데이터 확인
+    console.log(formData);
+
     fetch('/api/v1/member/join', {
         method: 'POST',
         body: formData
