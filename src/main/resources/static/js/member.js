@@ -136,15 +136,14 @@ const submitLoginfrm = async (frm, token, headerName) => {
     //frm.passwd.value = await hashPassword(frm.passwd.value);
     const formData = new FormData(frm);
 
-    fetch('/member/login', {
+    fetch('/api/v1/member/login', {
         method: 'POST',
-        headers: { [headerName]: token },
         body: formData
     }).then(async response => {
         if (response.ok) { // 로그인이 성공했다면
             alert(await response.text());
             location.href = '/member/myinfo';
-        } else if (response.status === 401) {
+        } else if (response.status === 400) {
             alert(await response.text());
         } else { // 로그인이 실패했다면
             alert('로그인에 실패했습니다!! 다시 시도해 주세요!');

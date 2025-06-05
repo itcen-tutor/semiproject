@@ -2,6 +2,7 @@ package org.example.semiproject.member.serivce;
 
 import lombok.RequiredArgsConstructor;
 import org.example.semiproject.member.domain.Member;
+import org.example.semiproject.member.domain.dto.LoginDTO;
 import org.example.semiproject.member.domain.dto.MemberDTO;
 import org.example.semiproject.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
         // true/false 반환
     }
 
-    public Member loginMember(MemberDTO member) {
+    public Member loginMember(LoginDTO member) {
         Member findMember = memberMapper.findByUserid(member.getUserid());
 
         if (findMember == null || !findMember.getPasswd().equals(member.getPasswd())) {
