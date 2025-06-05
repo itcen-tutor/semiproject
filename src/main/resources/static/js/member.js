@@ -145,7 +145,18 @@ const validLogin = (form) => {
 // 로그인 폼 제출
 const submitLoginfrm = async (frm, token, headerName) => {
     //frm.passwd.value = await hashPassword(frm.passwd.value);
+
+    // 캡챠 확인
+    let response = grecaptcha.getResponse();
+    if(response.length == 0) {
+        alert('자동가입 방지 확인하세요!!');
+        return false;
+    }
+
     const formData = new FormData(frm);
+
+    // reCAPTCHA 토큰 추가
+    formData.append('recaptchaToken', response);
 
     fetch('/api/v1/member/login', {
         method: 'POST',
