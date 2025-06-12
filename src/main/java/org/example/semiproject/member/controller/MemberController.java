@@ -1,13 +1,12 @@
 package org.example.semiproject.member.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.semiproject.member.domain.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
+import jakarta.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
@@ -25,14 +24,23 @@ public class MemberController {
     }
 
     @GetMapping("/myinfo")
-    public String myinfo(Model model) {
+    public String myinfo(HttpSession session, Model model) {
+        String returnUrl = "member/login";
 
-        Member user = new Member(0,"abc123","abc123","abc123",
-            "abc123@abc123.co.kr", LocalDateTime.now());
+        // 세션변수가 생성되어 있다면 myinfo로 이동가능
+        if (session.getAttribute("loginUser") != null) {
+            model.addAttribute("loginUser", session.getAttribute("loginUser"));
+            returnUrl = "member/myinfo";
+        }
+            
+        return returnUrl;
+    }
 
-        model.addAttribute("loginUser", user);
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
 
-        return "member/myinfo";
+        return "redirect:/";
     }
 
 }
