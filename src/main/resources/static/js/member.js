@@ -94,7 +94,7 @@ const submitJoinfrm = async (frm) => {
     // 폼에 입력된 데이터를 formData 객체로 초기화
     const formData = new FormData(frm);
 
-    fetch('/member/join', {
+    fetch('/api/v1/member/join', {
         method: 'POST',
         body: formData
     }).then(async response => {
@@ -133,7 +133,7 @@ const submitLoginfrm = async (frm, token, headerName) => {
     //frm.passwd.value = await hashPassword(frm.passwd.value);
     const formData = new FormData(frm);
 
-    fetch('/member/login', {
+    fetch('/api/v1/member/login', {
         method: 'POST',
         headers: { [headerName]: token },
         body: formData
