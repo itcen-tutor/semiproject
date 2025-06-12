@@ -91,8 +91,16 @@ const submitJoinfrm = async (frm) => {
     //frm.passwd.value = await hashPassword(frm.passwd.value);
     //console.log(frm.passwd.value);
 
+    let response = grecaptcha.getResponse();
+    if(response.length == 0) {
+        alert('자동가입 방지 확인하세요!!');
+        return false;
+    }
+    console.log(response);
+
     // 폼에 입력된 데이터를 formData 객체로 초기화
     const formData = new FormData(frm);
+    formData.append('recaptchaToken', response);
 
     fetch('/api/v1/member/join', {
         method: 'POST',

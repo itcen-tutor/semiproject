@@ -1,6 +1,8 @@
 package org.example.semiproject.member.controller;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,13 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/member")
 public class MemberController {
 
+    @Value("${recaptcha_sitekey}")
+    private String sitekey;
+
     @GetMapping("/join")
-    public String join() {
+    public String join(Model model) {
+        model.addAttribute("sitekey", sitekey);
+
         return "member/join";
     }
 
