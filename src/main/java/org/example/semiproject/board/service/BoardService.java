@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface BoardService {
 
-    List<ListBoardDTO> readBoard();
+    List<ListBoardDTO> readBoard(int cpg);
 
 }
