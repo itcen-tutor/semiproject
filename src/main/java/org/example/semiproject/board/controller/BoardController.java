@@ -30,5 +30,13 @@ public class BoardController {
         return "board/list";
     }
 
+    @GetMapping("/view")
+    public String view(Model m, int bno) {
+
+        m.addAttribute("bd", boardService.readOneBoard(bno));
+
+        return "board/view";
+    }
+
 }
 
