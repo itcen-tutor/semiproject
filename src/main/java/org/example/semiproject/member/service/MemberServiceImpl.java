@@ -8,6 +8,9 @@ import org.example.semiproject.member.repository.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
@@ -38,7 +41,12 @@ public class MemberServiceImpl implements MemberService {
     public Member loginMember(LoginDTO member) {
         Member findMember = memberMapper.findByUserid(member.getUserid());
 
-        if (findMember == null || !findMember.getPasswd().equals(member.getPasswd())) {
+        // 비밀번호 암호화
+        // member.setPasswd(passwordEncoder.encode(member.getPasswd()));
+        log.info("조회된 계정 : {}, 로그인 계정 : {}", findMember.getPasswd(), member.getPasswd());
+
+        //if (findMember == null || !findMember.getPasswd().equals(member.getPasswd())) {
+        if (findMember == null || !passwordEncoder.matches(member.getPasswd(), findMember.getPasswd())) { // security 사용시
             throw new IllegalStateException("아이디나 비밀번호가 일치하지 않습니다!!");
         }
 

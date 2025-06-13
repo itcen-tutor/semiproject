@@ -141,8 +141,8 @@ const submitLoginfrm = async (frm, token, headerName) => {
     //frm.passwd.value = await hashPassword(frm.passwd.value);
     const formData = new FormData(frm);
 
-    //fetch('/api/v1/member/login', { // security에서는 필요 없음
-    fetch('/member/login', {  // security에서 자동 처리
+    fetch('/api/v1/member/login', { // jwt에서는 다시 재설정
+    //fetch('/member/login', { 
         method: 'POST',
         headers: { [headerName]: token },
         body: formData
