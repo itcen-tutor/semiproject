@@ -26,26 +26,19 @@ public class SecurityConfig {
   // 클라이언트 입장: 브라우저나 API 클라이언트가 Authorization 헤더를 
   // 더 이상 보내지 않으면 "로그아웃"  =>  완전히 로그아웃하려면 브라우저를 닫음
   // SecurityFilterChain 빈 등록: Spring Security의 필터 체인을 구성하는 메서드
-  @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-     http
-        // CSRF(Cross-Site Request Forgery) 보호 기능 비활성화
-        // REST API 서버에서는 일반적으로 CSRF를 사용하지 않으므로 disable
-        .csrf(csrf -> csrf.disable())
 
-        // 요청에 대한 인가(Authorization) 규칙 설정
-        .authorizeHttpRequests(auth -> auth
-            // 모든 요청(anyRequest)에 대해 인증 필요 (로그인해야 접근 가능)
-            .anyRequest().authenticated()
-        )
-
-        // HTTP Basic 인증 방식 활성화
-        // realmName은 인증 창에 표시되는 영역 이름(옵션)
-        .httpBasic(httpBasic -> httpBasic.realmName("HttpBasic"));
-
-		    // 설정를 적용해서 SecurityFilterChain 객체 반환
-		    return http.build();
-		}
+	@Bean  
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {  
+		http  
+			.csrf(csrf -> csrf.disable()) // CSRF 비활성화 (API용)  
+			.authorizeHttpRequests(auth -> auth  
+				.requestMatchers("/board/list").hasRole("ADMIN") // 관리자 권한 필요  
+				.requestMatchers("/member/login").hasRole("USER") // 인증 필요  
+				.anyRequest().permitAll() // 그 외는 모두 허용  
+			)  
+			.httpBasic(httpBasic -> httpBasic.realmName("HttpBasic")); // HTTP Basic 인증 활성화  
+		return http.build();  
+	}
 
 		// UserDetailsService 빈 등록: 사용자 정보를 메모리에서 관리하는 서비스
 		@Bean
