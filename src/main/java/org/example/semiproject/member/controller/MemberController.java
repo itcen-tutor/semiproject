@@ -43,11 +43,12 @@ public class MemberController {
         return returnUrl;
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
+    // security가 로그아웃 처리해 줌!
+    // @GetMapping("/logout")
+    // public String logout(HttpSession session) {
+    //     session.invalidate();
 
-        return "redirect:/";
-    }
+    //     return "redirect:/";
+    // }
 
 }
