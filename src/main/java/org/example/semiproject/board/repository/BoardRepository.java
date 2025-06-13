@@ -1,10 +1,11 @@
 package org.example.semiproject.board.repository;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.example.semiproject.board.domain.Board;
 import org.example.semiproject.board.dto.ListBoardDTO;
+
+import java.util.List;
 
 @Mapper
 public interface BoardRepository {

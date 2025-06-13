@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import org.example.semiproject.board.dto.ListBoardDTO;
 import org.example.semiproject.board.entity.Board;
 import org.example.semiproject.board.entity.BoardListView;
 import org.example.semiproject.board.repository.BoardJpaRepository;
@@ -32,6 +31,11 @@ public class BoardJpaServiceImpl implements BoardJpaService {
         // 페이징 없는 전체 게시글 조회 (최신순)
         List<BoardListView> boards = boardRepository.findAllByOrderByBnoDesc();
         return boards;
+    }
+
+    @Override
+    public Board getBoardOne(int bno) {
+        return boardRepository.findByBno(bno);
     }
 
 }

@@ -27,11 +27,18 @@ public class BoardController {
         log.info("board/list 호출!!");
 
         m.addAttribute("bds", boardService.readBoard(cpg));
-
         m.addAttribute("cpg", cpg);
         m.addAttribute("stblk", ((cpg - 1) / 10) * 10 + 1);
 
         return "board/list";
+    }
+
+    @GetMapping("/view")
+    public String view(Model m, int bno) {
+
+        m.addAttribute("bd", boardService.readOneBoard(bno));
+
+        return "board/view";
     }
 
     @GetMapping("/list2")
@@ -40,19 +47,18 @@ public class BoardController {
         // cpg 매개변수가 전달되지 않을 경우 기본값인 1이 전달됨
         log.info("board/list2 호출!!");
 
-        //m.addAttribute("bds", boardJpaService.getBoardList());
         m.addAttribute("bds", boardJpaService.getBoardList(cpg));
 
         m.addAttribute("cpg", cpg);
         m.addAttribute("stblk", ((cpg - 1) / 10) * 10 + 1);
 
         return "board/list";
-    }    
+    }   
 
-    @GetMapping("/view")
-    public String view(Model m, int bno) {
+    @GetMapping("/view2")
+    public String view2(Model m, int bno) {
 
-        m.addAttribute("bd", boardService.readOneBoard(bno));
+        m.addAttribute("bd", boardJpaService.getBoardOne(bno));
 
         return "board/view";
     }

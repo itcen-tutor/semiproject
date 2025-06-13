@@ -1,7 +1,6 @@
 package org.example.semiproject.board.service;
 
 import lombok.RequiredArgsConstructor;
-
 import org.example.semiproject.board.domain.Board;
 import org.example.semiproject.board.dto.ListBoardDTO;
 import org.example.semiproject.board.repository.BoardRepository;
@@ -17,9 +16,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<ListBoardDTO> readBoard(int cpg) {
-        //cpg에 따라 시작위치값 계산
-        int stnum = (cpg - 1) * 25;
-        return boardMapper.selectBoard(stnum);
+    int stnum = (cpg - 1) * 25;
+    return boardMapper.selectBoard(stnum);
     }
 
     @Override

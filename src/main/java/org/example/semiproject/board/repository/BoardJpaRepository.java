@@ -18,5 +18,7 @@ public interface BoardJpaRepository extends PagingAndSortingRepository<Board, In
     // 페이징 없는 전체 게시글 조회 (최신순)
     List<BoardListView> findAllByOrderByBnoDesc();
 
-}
+    // 게시글 번호로 게시글 조회
+    Board findByBno(int bno);
 
+}
