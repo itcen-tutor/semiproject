@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+
+<th:block layout:fragment="css">
+    <link href="/css/member.css" rel="stylesheet">
+</th:block>
+
+<th:block layout:fragment="content">
+    <main id="content">
+        <h2>회원정보</h2>
+        <div id="myinfo">
+            <table class="table table-bordered mb-0">
+                <!-- 테이블의 컬럼 너비, 스타일 지정 -->
+                <colgroup>
+                    <col style="width: 30%">
+                    <col>
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td>아이디</td>
+                    <td><span id="userid">-</span></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><span id="name">-</span></td>
+                </tr>
+                <tr>
+                    <td>이메일</td>
+                    <td><span id="email">-</span></td>
+                </tr>
+                <tr>
+                    <td>가입일</td>
+                    <td><span id="regdate">-</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="/js/member.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMyinfo();
+        });
+    </script>
+</th:block>
+
+</html>

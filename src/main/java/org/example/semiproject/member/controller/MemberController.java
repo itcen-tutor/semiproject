@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.example.semiproject.common.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,17 +32,22 @@ public class MemberController {
     }
 
     @GetMapping("/myinfo")
-    public String myinfo(Model model, Authentication authentication) {
-        String returnPage = "redirect:/member/login";
+    public String myinfo() {
+      String returnPage = "member/myinfo2";
 
+      return returnPage;
+	}
+		
+    @GetMapping("/fetchMyinfo")
+    public ResponseEntity<?> fetchMyinfo(Authentication authentication) {
+        ResponseEntity<?> returnPage = ResponseEntity.status(401).body("인증되지 않은 사용자입니다.");
         if (authentication != null && authentication.isAuthenticated()) {
             // UserDetails에서 아이디 등 정보 추출
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
-
-            model.addAttribute("loginUser", user);
-            returnPage = "member/myinfo";
+    
+            returnPage = ResponseEntity.status(200).body(user);
         }
-
+    
         return returnPage;
     }
 
