@@ -2,12 +2,9 @@ package org.example.semiproject.member.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.time.LocalDateTime;
-
-import org.example.semiproject.member.domain.Member;
+import org.example.semiproject.common.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,12 +36,7 @@ public class MemberController {
 
         if (authentication != null && authentication.isAuthenticated()) {
             // UserDetails에서 아이디 등 정보 추출
-            User existUser = (User) authentication.getPrincipal();
-            Member user = Member.builder()
-                    .userid(existUser.getUsername())
-                    .name("준비중...").email("준비중...") // 실제로는 DB에서 조회해야 함
-                    .regdate(LocalDateTime.now()) // 현재 시간으로 설정
-                    .build();
+            CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
 
             model.addAttribute("loginUser", user);
             returnPage = "member/myinfo";
