@@ -77,6 +77,16 @@ public class GalleryServiceImpl implements GalleryService {
     @Override
     public List<GalleryDTO> readGallery() {
         return galleryMapper.selectGallery();
-    }    
+    }
+    
+    @Override
+    public Gallery readOneGallery(int ggno) {
+        return galleryMapper.selectOneGallery(ggno);
+    }
+
+    @Override
+    public List<GalleryImage> readOneGalleryImg(int ggno) {
+        return galleryImageMapper.selectOneGalleryImg(ggno);
+    }
 
 }

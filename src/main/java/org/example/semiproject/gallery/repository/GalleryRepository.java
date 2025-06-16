@@ -12,4 +12,8 @@ public interface GalleryRepository extends JpaRepository<Gallery, Long> {
 	@Query(value = "select ggno, title, userid, regdate, simgname from gallerys order by ggno desc", nativeQuery = true)
     List<GalleryDTO> selectGallery();
 
+    @Query(value = "select * from gallerys where ggno = :ggno",
+          nativeQuery = true)
+    Gallery selectOneGallery(int ggno);
+    
 }

@@ -29,8 +29,10 @@ public class GalleryController {
         return "gallery/list";
     }
 
-    @GetMapping("/view/{gno}")
-    public String view(Model model, @PathVariable Long gno) {
+    @GetMapping("/view/{ggno}")
+    public String view(Model model, @PathVariable int ggno) {
+        model.addAttribute("gal", galleryService.readOneGallery(ggno));
+        model.addAttribute("galimgs", galleryService.readOneGalleryImg(ggno));
 
         return "gallery/view";
     }

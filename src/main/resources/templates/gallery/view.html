@@ -39,27 +39,28 @@
                             새글쓰기</button></td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr><th class="vtit" colspan="2">제목</th></tr>
+                    <tbody>
+                    <tr><th class="vtit" colspan="2" th:text="${gal.title}">제목</th></tr>
 
-                <tr><td class="vinfo">작성자</td>
-                    <td class="text-end vinfo">작성일/추천/조회</td></tr>
+                    <tr><td class="vinfo" th:text="${gal.userid}">작성자</td>
+                    <td class="text-end vinfo"
+                    th:text="|${gal.regdate}/0/0|">작성일/추천/조회</td></tr>
 
-                <tr>
+                    <tr>
                     <td class="vcont" colspan="2">
 
-                            <img src="/images/cowmeat01.jpg" class="img-fluid">
-                            <img src="/images/cowmeat02.jpg" class="img-fluid">
-                            <img src="/images/cowmeat03.jpg" class="img-fluid">
+                    <span th:text="${gal.contents}"></span>
 
-                        <th:block>
-                            <div class="bg-light">cowmeat01.jpg (1024kb)</div>
-                            <div class="bg-light">cowmeat02.jpg (2048kb)</div>
-                            <div class="bg-light">cowmeat03.jpg (3096kb)</div>
-                        </th:block>
+                    <div th:each="gi : ${galimgs}">
+                    <img th:src="|http://localhost/cdn/${gi.imgname}|" class="img-fluid">
+                    </div>
+
+                    <th:block th:each="gi : ${galimgs}">
+                    <div class="bg-light">[[${gi.imgname}]] ([[${gi.imgsize}]]kb)</div>
+                    </th:block>
                     </td>
-                </tr>
-                </tbody>
+                    </tr>
+                    </tbody>
                 <tfoot><tr><td>
                     <button type="button" class="btn btn-warning">
                         수정하기</button>
