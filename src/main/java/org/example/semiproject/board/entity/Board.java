@@ -31,10 +31,10 @@ public class Board {
     private LocalDateTime regdate;
 
     @Column(name = "thumbs", columnDefinition = "integer default 0")
-    private Integer thumbs = 0;
+    private Integer thumbs;
 
     @Column(name = "views", columnDefinition = "integer default 0")
-    private Integer views = 0;
+    private Integer views;
 
     @Lob
     @Column(name = "contents", columnDefinition = "TEXT")

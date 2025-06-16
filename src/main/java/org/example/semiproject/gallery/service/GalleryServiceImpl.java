@@ -2,6 +2,8 @@ package org.example.semiproject.gallery.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.example.semiproject.gallery.dto.GalleryDTO;
 import org.example.semiproject.gallery.entity.Gallery;
 import org.example.semiproject.gallery.entity.GalleryImage;
 import org.example.semiproject.gallery.repository.GalleryImageRepository;
@@ -71,5 +73,10 @@ public class GalleryServiceImpl implements GalleryService {
 
         return result;
     }
+
+    @Override
+    public List<GalleryDTO> readGallery() {
+        return galleryMapper.selectGallery();
+    }    
 
 }

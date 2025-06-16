@@ -14,7 +14,6 @@ import java.util.Map;
 import org.example.semiproject.common.jwt.JwtTokenProvider;
 import org.example.semiproject.common.utils.GoogleRecaptchaService;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

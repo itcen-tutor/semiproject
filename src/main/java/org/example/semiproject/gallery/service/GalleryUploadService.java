@@ -85,12 +85,11 @@ public class GalleryUploadService {
             BufferedImage scaleImg = Scalr.crop(img,
                     (img.getWidth() - imgW) / 2,
                     (img.getHeight() - imgH) / 2,  // crop할 좌표
-                    imgW, imgH,   // crop할 이미지 크기
-                    null);
+                    imgW, imgH);   // crop할 이미지 크기
 
             // 잘라낸 이미지를 330x350 크기로 재조정
             BufferedImage resizeImg = Scalr.resize(
-                    scaleImg, 330, 350, null);
+                    scaleImg, 330, 350);
 
             // 재조정한 이미지를 실제 경로에 저장
             ImageIO.write(resizeImg, "png", new File(thumbname));
