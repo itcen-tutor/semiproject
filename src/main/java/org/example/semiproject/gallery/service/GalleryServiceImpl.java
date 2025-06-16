@@ -89,4 +89,10 @@ public class GalleryServiceImpl implements GalleryService {
         return galleryImageMapper.selectOneGalleryImg(ggno);
     }
 
+    @Override
+    public Gallery readOneGallery2(int ggno) {
+        return galleryMapper.findGalleryWithImagesByGgno((long) ggno)
+                .orElseThrow(() -> new IllegalStateException("Gallery not found with ggno: " + ggno));  
+    }
+
 }

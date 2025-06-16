@@ -14,4 +14,6 @@ public interface GalleryService {
 
     Gallery readOneGallery(int ggno);
     List<GalleryImage> readOneGalleryImg(int ggno);
+
+    Gallery readOneGallery2(int ggno);
 }

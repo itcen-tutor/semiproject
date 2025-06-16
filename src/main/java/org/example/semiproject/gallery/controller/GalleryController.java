@@ -44,4 +44,13 @@ public class GalleryController {
         return "gallery/write";
     }
 
+    @GetMapping("/view2/{ggno}")
+    public String view2(@PathVariable int ggno, Model model) {
+        model.addAttribute("gal", galleryService.readOneGallery2(ggno));
+        log.info("Gallery: {}", galleryService.readOneGallery2(ggno));
+
+        return "gallery/view2";
+    }
+
+
 }
